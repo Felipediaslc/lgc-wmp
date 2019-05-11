@@ -1,0 +1,13 @@
+java
+spring-boot
+thymeleaf
+h2
+mysql
+lombok
+maven
+junit
+mockito
+jpa
+travis
+sonar
+github

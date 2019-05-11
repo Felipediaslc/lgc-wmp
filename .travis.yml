@@ -1,0 +1,20 @@
+language: java
+sudo: false
+deploy:
+  provider: heroku
+  api_key:
+    secure: 58c04a8a-2e3b-4102-a50a-cca1f58c3783
+before_install:
+- chmod +x mvnw
+cache:
+  directories:
+  - $HOME/.m2
+addons:
+  sonarcloud:
+    organization: luisgomezcaballero-github
+    token:
+      secure: lx8d8YqZqBBB4qqu6CiryuQQD4hVfBFe2UnXY+kJViGlXqSgh4r9mmhFUNwM//eeNwr7qb08RfesP0i0qWrbXUd7KNMNE1g+h2sbivmqqPRJilArL7ulPqmTst7YFUjlJOYttKnZZCQJQk4RlxGAprege2Uf22jARfvDnfK7fYJJ9uBf74PfM85uCz/5fRqyOnTu5L8BLLU57z4GgUZdxvbLckFK+36CzcZMBXA+8nyPR80tQ+W7MDApnxbqumznHA9gtXCvs8f3EOJPVIrwasG1KUUKCw2RF9KmvxZUVej9Ml7xhJ8SKCshWJct/gqO9vDicKTU5Cxssi3ZrSiHcArEC3f+3uE5a74hYqVXpT8Vfja0KojSncltTMToR7Vo3Yw5pF0DMhuGbPDXCuXHdUu668SZXn5lok3dgeDmamn3rrSoNq1EL/HlKTlcz3culmNQmzkuyGUgEAQslRD64ukIqrVPvnJDAeIJ7R9JwOahLYhNYgaHkZjolf+5lnPci67u6FwufeeM7G0tED5FkeJ4DzSGCwurR8ng0cDobjTsB/KghZNbLid3+5FFJlMHkZz000KoQx1SmV26iAxsLBTMaW8yI+nTYAW8sWFGn9gcRtx5Zdw/USaImivOReiBUWGL55d3ZGoiN6fwZEdO7a9xSFv+7GjsqzUGiD1FzWA=
+jdk:
+- oraclejdk8
+script:
+- mvn sonar:sonar -Dsonar.projectKey=lgc-wmp -Dsonar.organization=luisgomezcaballero-github -Dsonar.host.url=https://sonarcloud.io  -Dsonar.login=03b2d14c85360e1190034e23c76b8067792e8a2e

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<title th:text="#{dishes.title.updateDish} + ' - ' + #{appName}">Update dish - Weekly Menu Planner</title>
+</head>
+<body>
+	<div class="container">
+		<div th:insert="~{navbar :: navbar}"></div>
+		<h1 th:text="#{dishes.title.updateDish}">Update dish</h1>
+		<form action="#" th:action="@{/dishes/update/{dishId}(dishId=${dish.dishId})}" th:object="${dish}" method="post">
+			<label th:for="name" th:text="#{dishes.name} + ':'">name</label>
+			<input type="text" id="name" th:field="*{name}" placeholder="" class="form-control" maxlength="1024" />
+			<label th:for="ingredients" th:text="#{dishes.ingredients} + ':'">ingredients</label>
+			<textarea id="ingredients" th:field="*{ingredients}" placeholder="" class="form-control" rows="4" maxlength="1024"></textarea>
+			<label th:for="recipe" th:text="#{dishes.recipe} + ':'">recipe</label>
+			<textarea id="recipe" th:field="*{recipe}" placeholder="" class="form-control" rows="5" maxlength="1024"></textarea>
+			<table class="table">
+				<tbody>
+					<tr>
+						<td>
+							<button type="button" class="btn btn-primary" onclick="window.history.back();">
+								<em class="fas fa-arrow-left"></em>
+								<span th:text="' ' + #{window.history.back}">
+							</button>
+						</td>
+						<td class="text-right">
+							<button class="btn btn-primary" type="Submit">
+								<em class="fas fa-check"></em>
+								<span th:text="' ' + #{update}">
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

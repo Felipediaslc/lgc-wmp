@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.css">
+<title th:text="#{menus.title.updateMenu} + ' - ' + #{appName}">Update menu - Weekly Menu Planner</title>
+</head>
+<body>
+	<div class="container">
+		<div th:insert="~{navbar :: navbar}"></div>
+		<h1 th:text="#{menus.title.updateMenu}">Update menu</h1>
+		<form th:action="@{/menu/{menuId}/update(menuId=${menu.menuId})}" th:object="${menu}" method="post">
+			<label th:for="startDate" th:text="#{menus.startDate} + ':'">startDate</label>
+			<input type="text" id="startDate" th:field="*{startDate}" class="form-control" />
+			<table class="table">
+				<tbody>
+					<tr>
+						<td>
+							<button type="button" class="btn btn-primary" onclick="window.history.back();">
+								<em class="fas fa-arrow-left"></em>
+								<span th:text="' ' + #{window.history.back}">
+							</button>
+						</td>
+						<td class="text-right">
+							<button class="btn btn-primary" type="Submit">
+								<em class="fas fa-check"></em>
+								<span th:text="' ' + #{update}">
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table" data-toggle="table" data-pagination="true" data-search="true">
+				<thead>
+					<tr>
+						<th th:text="#{menuLines.dishOrder}" data-sortable="true">dishOrder</th>
+						<th th:text="#{menuLines.weekday}" data-sortable="true">weekday</th>
+						<th th:text="#{menuLines.mealType}">mealType</th>
+						<th th:text="#{menuLines.dish.name}">dishes</th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="menuLine: ${menuLines}">
+						<td th:text="${menuLine.dishOrder}">dishOrder</td>
+						<td th:text="${weekdays[menuLine.weekday-1]}">Monday</td>
+						<td th:text="${mealTypes[menuLine.mealType-1]}">Lunch</td>
+						<td>
+							<a href="#" th:href="@{/dishes/update/{dishId}(dishId=${menuLine.dish.dishId})}">
+								<span th:text="${menuLine.dish.name}">dishes</span>
+							</a>
+						</td>
+						<td>
+							<a th:href="@{/menu/{menuId}/menuLine/{menuLineId}/update(menuId=${menu.menuId},menuLineId=${menuLine.menuLineId})}"
+								class="btn btn-secondary">
+								<em class="fa fa-edit"></em>
+								<span th:text="' ' + #{update}">
+							</a>
+						</td>
+						<td>
+							<a th:href="@{/menu/{menuId}/menuLine/{menuLineId}/delete(menuId=${menu.menuId},menuLineId=${menuLine.menuLineId})}"
+								class="btn btn-danger">
+								<em class="fa fa-trash"></em>
+								<span th:text="' ' + #{delete}">
+							</a>
+						</td>
+						<td>
+							<div th:if="${menuLine.dishOrder != 1}">
+								<a th:href="@{/menu/{menuId}/menuLine/{dishOrder}/moveUp(menuId=${menu.menuId},dishOrder=${menuLine.dishOrder})}"
+									class="btn btn-secondary">
+									<em class="fa fa-arrow-up"></em>
+								</a>
+							</div>
+						</td>
+						<td>
+							<div th:if="${menuLine.dishOrder != menuLines.size()}">
+								<a th:href="@{/menu/{menuId}/menuLine/{dishOrder}/moveDown(menuId=${menu.menuId},dishOrder=${menuLine.dishOrder})}"
+									class="btn btn-secondary">
+									<em class="fa fa-arrow-down"></em>
+								</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table">
+				<tbody>
+					<tr>
+						<td></td>
+						<td class="text-right">
+							<a th:href="@{/menu/{menuId}/menuLine/create(menuId=${menu.menuId})}" class="btn btn-secondary">
+								<em class="fa fa-plus-circle"></em>
+								<span th:text="' ' + #{create}">
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
+</body>
+</html>

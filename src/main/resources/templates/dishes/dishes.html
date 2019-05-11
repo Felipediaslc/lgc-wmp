@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.css">
+<title th:text="#{dishes.title} + ' - ' + #{appName}">Dishes - Weekly Menu Planner</title>
+</head>
+<body>
+	<div class="container">
+		<div th:insert="~{navbar :: navbar}"></div>
+		<h1 th:text="#{dishes.title}">Dishes</h1>
+		<table class="table" data-toggle="table" data-pagination="true" data-search="true">
+			<thead>
+				<tr>
+					<th th:text="#{dishes.name}" data-sortable="true">Name</th>
+					<th th:text="#{dishes.ingredients}">Ingredients</th>
+					<th th:text="#{dishes.recipe}">Recipe</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dish: ${allDishes}">
+					<td th:text="${dish.name}">Omelette</td>
+					<td th:text="${dish.ingredients}">Eggs</td>
+					<td th:text="${dish.recipe}">Mix the eggs in a bowl and fry them in a pan.</td>
+					<td>
+						<a th:href="@{/dishes/update/} + ${dish.dishId}" class="btn btn-secondary">
+							<em class="fa fa-edit"></em>
+							<span th:text="' ' + #{update}">
+						</a>
+					</td>
+					<td>
+						<a th:href="@{/dishes/delete/} + ${dish.dishId}" class="btn btn-danger">
+							<em class="fa fa-trash"></em>
+							<span th:text="' ' + #{delete}">
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>
+						<button type="button" class="btn btn-primary" onclick="window.history.back();">
+							<em class="fas fa-arrow-left"></em>
+							<span th:text="' ' + #{window.history.back}">
+						</button>
+					</td>
+					<td class="text-right">
+						<a th:href="@{/dishes/create}" class="btn btn-success">
+							<em class="fa fa-plus-circle"></em>
+							<span th:text="' ' + #{create}">
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
+</body>
+</html>
