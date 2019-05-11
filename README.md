@@ -1,7 +1,6 @@
 # Weekly Menu Planner
 [![Build Status](https://travis-ci.org/luisgomezcaballero/lgc-wmp.svg?branch=master)](https://travis-ci.org/luisgomezcaballero/lgc-wmp)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=lgc-wmp&metric=alert_status)](https://sonarcloud.io/dashboard?id=lgc-wmp)
-![GitHub repo size](https://img.shields.io/github/repo-size/luisgomezcaballero/lgc-wmp.svg)
 [![Website](https://img.shields.io/website/https/dashboard.heroku.com/apps/lgc-wmp.svg)](https://lgc-wmp.herokuapp.com/)
 
 ## Description
