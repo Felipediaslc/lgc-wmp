@@ -16,6 +16,9 @@
 	<description>Weekly Menu Planner</description>
 
 	<properties>
+		<sonar.projectKey>lgc-wmp-spring</sonar.projectKey>
+                <sonar.host.url>http://ip172-18-0-30-c1mde09bqvp000aac7v0-9000.direct.labs.play-with-docker.com</sonar.host.url>
+                <sonar.login>de65f7bfcb201d7588fc7cdbf7a52430fc5075cb</sonar.login>
 		<java.version>1.8</java.version>
 	</properties>
 
